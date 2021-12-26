@@ -6,3 +6,6 @@ coverage
 .idea
 .hushlogin
 .yarn/cache
+
+.env
+server/.env

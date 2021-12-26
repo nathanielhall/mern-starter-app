@@ -3,40 +3,41 @@ const path = require('path')
 const APP_PATH = path.resolve(__dirname, 'src')
 
 module.exports = {
+  mode: "development",
   entry: APP_PATH,
 
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].[hash].js',
-    publicPath: '/'
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist')
   },
-  devtool: 'source-map',
 
   resolve: {
-    extensions: ['.js', '.jsx', '.json'],
+    extensions: ['.tsx', '.ts', '.js', '.jsx'],
     alias: {
       components: path.resolve(__dirname, './src/components/'),
-      src: path.resolve(__dirname, './src/'),
-      'react-dom': '@hot-loader/react-dom'
+      src: path.resolve(__dirname, './src/')
     }
   },
 
   module: {
     rules: [
       {
-        test: /\.(js)x?$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/,
-        options: {
-          cacheDirectory: true
-        }
+        test: /\.(ts)x?$/,
+        exclude: [
+          /dist/,
+          /node_modules/,
+          /\\.test\\.tsx?$/,
+          /__tests__/,
+          /typings/
+        ],
+        use: [{ loader: 'ts-loader' }]
       }
     ]
   },
+
   plugins: [
     new HtmlWebpackPlugin({
-      inject: true,
-      template: path.join(APP_PATH, 'index.html')
+      template: path.join(__dirname, './src/index.html')
     })
   ]
 }

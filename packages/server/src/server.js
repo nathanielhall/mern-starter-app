@@ -10,7 +10,7 @@ app.use(cors())
 app.use(express.json())
 
 const uri = process.env.DB_HOST
-mongoose.connect(uri, { useNewUrlParser: true })
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
 
 const connection = mongoose.connection
 connection.once('open', () => {
@@ -19,8 +19,9 @@ connection.once('open', () => {
 
 app.use(bodyParser.json())
 
-const todosRouter = require('./routes/todos')
-app.use('/todos', todosRouter)
+const todoController = require('./controllers/todo')
+app.use('/todos', todoController)
+
 app.use((err, req, res, next) => {
   console.log(err)
   next()
@@ -29,3 +30,4 @@ app.use((err, req, res, next) => {
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`)
 })
+
