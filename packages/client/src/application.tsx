@@ -1,6 +1,3 @@
-// import react from 'react'
-// import { useApi} from ''
-
 import { useApi } from "./api"
 
 
