@@ -1,8 +1,11 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const cors = require('cors')
-const mongoose = require('mongoose')
-require('dotenv').config()
+import express from 'express'
+import bodyParser from 'body-parser'
+import cors from 'cors'
+import mongoose from 'mongoose'
+import dotenv from 'dotenv'
+import { TodoController } from './controllers'
+dotenv.config()
+
 const app = express()
 const port = process.env.PORT || 5000
 
@@ -19,8 +22,7 @@ connection.once('open', () => {
 
 app.use(bodyParser.json())
 
-const todoController = require('./controllers/todo')
-app.use('/todos', todoController)
+app.use('/todos', TodoController)
 
 app.use((err, req, res, next) => {
   console.log(err)
@@ -30,4 +32,3 @@ app.use((err, req, res, next) => {
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`)
 })
-
