@@ -3,7 +3,8 @@ import bodyParser from 'body-parser'
 import cors from 'cors'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
-import { TodoController } from './controllers'
+import { todoController } from './controllers'
+import { notFoundHandler, errorHandler } from './middlewares'
 dotenv.config()
 
 const app = express()
@@ -22,8 +23,10 @@ connection.once('open', () => {
 
 app.use(bodyParser.json())
 
-app.use('/todos', TodoController)
+app.use('/todos', todoController)
 
+app.use(errorHandler)
+app.use(notFoundHandler)
 app.use((err, req, res, next) => {
   console.log(err)
   next()

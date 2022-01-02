@@ -1,1 +1,1 @@
-export { router as TodoController } from './TodoController'
+export { todoController } from './todoController'

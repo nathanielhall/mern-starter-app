@@ -1,22 +1,17 @@
-// import { BaseController, Result } from './BaseController'
-
-//   public GetTodos: () => Result<Todo> = (id) => {
-//     return Result.ok()
-
 import { Todo } from '../models'
-import express, { Request, Response } from 'express'
+import express, { Request, Response, NextFunction } from 'express'
 
-export const router = express.Router()
+export const todoController = express.Router()
 
 // GET all todos
-router.get('/', (req: Request, res: Response, next) => {
+todoController.get('/', (req: Request, res: Response, next: NextFunction) => {
   Todo.find()
     .then((data) => res.json(data))
     .catch(next)
 })
 
 // Create or Update a TODO
-router.post('/', (req: Request, res: Response, next) => {
+todoController.post('/', (req: Request, res: Response, next: NextFunction) => {
   if (req.body.action) {
     Todo.create(req.body)
       .then((data) => res.json(data))
@@ -29,8 +24,11 @@ router.post('/', (req: Request, res: Response, next) => {
 })
 
 // Delete TODO
-router.delete('/:id', (req: Request, res: Response, next) => {
-  Todo.findOneAndDelete({ _id: req.params.id })
-    .then((data) => res.json(data))
-    .catch(next)
-})
+todoController.delete(
+  '/:id',
+  (req: Request, res: Response, next: NextFunction) => {
+    Todo.findOneAndDelete({ _id: req.params.id })
+      .then((data) => res.json(data))
+      .catch(next)
+  }
+)
