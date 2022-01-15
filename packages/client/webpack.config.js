@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
 const APP_PATH = path.resolve(__dirname, 'src')
 
 module.exports = {
-  mode: "development",
+  mode: 'development',
   entry: APP_PATH,
 
   output: {

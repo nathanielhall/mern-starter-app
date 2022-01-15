@@ -450,6 +450,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@mern-starter-app/client@workspace:packages/client"
   dependencies:
+    "@nathanielhall/useapi": ^1.0.5
     "@types/html-webpack-plugin": ^3.2.4
     "@types/jest": ^24.9.1
     "@types/react": ^16.14.2
@@ -490,6 +491,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@mern-starter-app/server@workspace:packages/server"
   dependencies:
+    "@types/cors": ^2.8.12
+    "@types/dotenv": ^8.2.0
+    "@types/express": ^4.17.13
+    "@types/node": ^17.0.5
     cors: ^2.8.5
     dotenv: ^8.2.0
     eslint: ^6.8.0
@@ -505,6 +510,20 @@ __metadata:
     prettier: ^1.19.1
   languageName: unknown
   linkType: soft
+
+"@nathanielhall/useapi@npm:^1.0.5":
+  version: 1.0.5
+  resolution: "@nathanielhall/useapi@npm:1.0.5::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40nathanielhall%2Fuseapi%2F1.0.5%2Fc233727ff15db1ac1634276a7000c54ee39227b10d537c53c0bd6fc219f57178"
+  dependencies:
+    axios: ^0.24.0
+  peerDependencies:
+    axios: ^0.24.0
+    react: ^17.0.2
+    react-dom: ^17.0.2
+    typescript: ^4.5.4
+  checksum: 4d155fab1749ba842fbf70d133e222da41d9c9c1789544ffbee012bb9348b86ddb9bed94e752760155ad319efccf17a4c96a6fc51f3296847b2a51c276d912e9
+  languageName: node
+  linkType: hard
 
 "@nodelib/fs.scandir@npm:2.1.5":
   version: 2.1.5
@@ -658,6 +677,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/cors@npm:^2.8.12":
+  version: 2.8.12
+  resolution: "@types/cors@npm:2.8.12"
+  checksum: 8c45f112c7d1d2d831b4b266f2e6ed33a1887a35dcbfe2a18b28370751fababb7cd045e745ef84a523c33a25932678097bf79afaa367c6cb3fa0daa7a6438257
+  languageName: node
+  linkType: hard
+
+"@types/dotenv@npm:^8.2.0":
+  version: 8.2.0
+  resolution: "@types/dotenv@npm:8.2.0"
+  dependencies:
+    dotenv: "*"
+  checksum: a1f524da7dc18b09bdb6c2613b9abbbe8ca575621cce4625efc7f98daf2ba07c7dbab622c9bb394507a12c5c515f9cbbbba4aeec17b801c88faeb8e8e656d460
+  languageName: node
+  linkType: hard
+
 "@types/eslint-scope@npm:^3.7.0":
   version: 3.7.2
   resolution: "@types/eslint-scope@npm:3.7.2"
@@ -703,7 +738,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/express@npm:*":
+"@types/express@npm:*, @types/express@npm:^4.17.13":
   version: 4.17.13
   resolution: "@types/express@npm:4.17.13"
   dependencies:
@@ -840,6 +875,13 @@ __metadata:
   version: 17.0.0
   resolution: "@types/node@npm:17.0.0"
   checksum: 30970a70c2eb78dbe80613d73243c255aaa9ce057d9e8595069ca0aef0363db0af45dc0d35f445cc804576a99df2970c170130663d76cd60319b779872e92ad6
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^17.0.5":
+  version: 17.0.5
+  resolution: "@types/node@npm:17.0.5"
+  checksum: 105535e78722515c26cfdc1b0cbf1b19f55fe53b814e2e90d8b1e653bc63136d4760c7efc102eca111c6d124a291e37d60d761d569a3f4afb3fba05bad5d9ade
   languageName: node
   linkType: hard
 
@@ -2938,6 +2980,13 @@ __metadata:
     no-case: ^3.0.4
     tslib: ^2.0.3
   checksum: a65e3519414856df0228b9f645332f974f2bf5433370f544a681122eab59e66038fc3349b4be1cdc47152779dac71a5864f1ccda2f745e767c46e9c6543b1169
+  languageName: node
+  linkType: hard
+
+"dotenv@npm:*":
+  version: 10.0.0
+  resolution: "dotenv@npm:10.0.0"
+  checksum: f412c5fe8c24fbe313d302d2500e247ba8a1946492db405a4de4d30dd0eb186a88a43f13c958c5a7de303938949c4231c56994f97d05c4bc1f22478d631b4005
   languageName: node
   linkType: hard
 
