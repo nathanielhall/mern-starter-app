@@ -1,8 +1,8 @@
 {
-  "name": "mern-starter-app",
+  "name": "starter-app",
   "version": "1.0.0",
   "main": "index.js",
-  "description": "Starter for creating apps using the MERN stack",
+  "description": "My personal starter for creating fullstack apps",
   "repository": {
     "type": "git",
     "url": "git://github.com/nathanielhall/mern-starter-app.git"
@@ -15,17 +15,16 @@
   "scripts": {
     "start": "yarn workspaces foreach -pi run start",
     "build": "yarn workspaces foreach -pti run build",
-    "start:server": "yarn workspace @mern-starter-app/server run start",
-    "start:client": "yarn workspace @mern-starter-app/client run start",
-    "start:commonn": "yarn workspace @mern-starter-app/common run start"
+    "start:server": "yarn workspace @starter-app/server run start:dev",
+    "start:client": "yarn workspace @starter-app/client run start"
   },
   "keywords": [
-    "mongo",
+    "postgres",
     "express",
     "react",
     "node",
     "starter",
-    "boilerplate"
+    "nextjs"
   ],
   "author": "Nathaniel C. Hall",
   "license": "MIT",

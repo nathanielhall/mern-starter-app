@@ -6,7 +6,8 @@ type Todo = {
 }
 
 export const Application = () => {
-  const [request, response] = useApi<Todo>('http://localhost:5000/todos')
+  // TODO: Replace with react query
+  const [request, response] = useApi<Todo>('http://localhost:5000/signin')
 
   return (
     <div>

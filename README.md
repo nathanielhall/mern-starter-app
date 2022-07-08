@@ -1,11 +1,18 @@
-# MERN Starter App
+# Fullstack Starter App
+> The purpose of this project is to create a full-stack starter app.
 
-> The purpose of this project is to create a MERN full-stack starter app.
+## Technologies
+- Docker Compose
+- Yarn
 
-## Goal
+#### Client
+- React
+- TypeScript
 
-- Start with CRUD, then create separate branch for CQRS
-- [ ] Create layered architecture
-  - MERN.Api
-  - MERN.Doman
-  - MERN.Infrastructure
+#### Server
+- NestJS
+- TypeScript
+- Prisma
+
+#### Database
+- Postgres 14
