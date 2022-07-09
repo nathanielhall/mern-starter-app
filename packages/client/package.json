@@ -3,7 +3,6 @@
   "author": "Nathaniel C. Hall",
   "license": "MIT",
   "version": "0.1.0",
-  "private": true,
   "scripts": {
     "build": "webpack --config webpack.config.js --progress",
     "start": "webpack-dev-server --config webpack.config.js --progress --open",
@@ -40,7 +39,6 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
-    "@nathanielhall/useapi": "^1.0.5",
     "axios": "^0.24.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
