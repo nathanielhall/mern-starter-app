@@ -20,5 +20,7 @@ model User {
 
   firstName String?
   lastName String?
+
+  @@map("users")
 }
 
