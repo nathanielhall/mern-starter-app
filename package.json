@@ -9,7 +9,9 @@
   },
   "workspaces": {
     "packages": [
-      "packages/*"
+      "packages/*",
+      "client",
+      "server"
     ]
   },
   "scripts": {
