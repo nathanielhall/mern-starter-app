@@ -1,5 +1,5 @@
 # Fullstack Starter App
-> The purpose of this project is to create a full-stack starter app.
+> Excuse the repo name! This is not a MERN stack. The technologies are listed below.
 
 ## Technologies
 - Docker Compose
