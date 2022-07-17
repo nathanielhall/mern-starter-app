@@ -1,6 +1,7 @@
 import React from 'react'
-import { Page, Section, FormInput, Button } from 'src/core'
+import {Grid, Page, Section, FormInput, Button } from 'src/core'
 import { useForm } from 'react-hook-form'
+// import Grid from '@mui/material/Grid'
 
 export type RegistrationFormFields = {
   firstName: string
@@ -22,30 +23,40 @@ export const SignUp = () => {
     <Page>
       <Section>
         <form onSubmit={onSubmit}>
-          <FormInput<RegistrationFormFields>
-            id="firstName"
-            type="text"
-            name="firstName"
-            label="First Name"
-            placeholder="First Name"
-            size="md"
-            register={register}
-            rules={{ required: 'You must enter your first name.' }}
-            errors={errors}
-          />
-          <FormInput<RegistrationFormFields>
-            id="lastName"
-            type="text"
-            name="lastName"
-            label="Last Name"
-            placeholder="Last Name"
-            size="md"
-            register={register}
-            rules={{ required: 'You must enter your last name.' }}
-            errors={errors}
-          />
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <FormInput<RegistrationFormFields>
+                id="firstName"
+                type="text"
+                name="firstName"
+                label="First Name"
+                placeholder="First Name"
+                size="md"
+                register={register}
+                rules={{ required: 'You must enter your first name.' }}
+                errors={errors}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <FormInput<RegistrationFormFields>
+                id="lastName"
+                type="text"
+                name="lastName"
+                label="Last Name"
+                placeholder="Last Name"
+                size="md"
+                register={register}
+                rules={{ required: 'You must enter your last name.' }}
+                errors={errors}
+              />
+            </Grid>
 
-          <Button type="submit">Submit</Button>
+            <Grid item xs={12} sx={{textAlign: 'right'}}>
+              <Button variant="contained" type="submit">
+                Register
+              </Button>
+            </Grid>
+          </Grid>
         </form>
       </Section>
     </Page>
