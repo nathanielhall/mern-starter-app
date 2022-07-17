@@ -15,7 +15,7 @@
     ]
   },
   "scripts": {
-    "start": "yarn workspaces foreach -pi run start",
+    "start": "yarn start:server && yarn start:client",
     "build": "yarn workspaces foreach -pti run build",
     "start:server": "yarn workspace @starter-app/server run start:dev",
     "start:client": "yarn workspace @starter-app/client run start"
