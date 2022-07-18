@@ -16,7 +16,7 @@ export const SignUp = () => {
   } = useForm<RegistrationFormFields>()
 
   const onSubmit = handleSubmit((data) => {
-    console.log('submitting...')
+    console.log('submitting...', data)
   })
 
   return (
@@ -26,11 +26,8 @@ export const SignUp = () => {
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <FormInput<RegistrationFormFields>
-                id="firstName"
-                type="text"
                 name="firstName"
                 label="First Name"
-                placeholder="First Name"
                 size="md"
                 register={register}
                 rules={{ required: 'You must enter your first name.' }}
@@ -39,11 +36,8 @@ export const SignUp = () => {
             </Grid>
             <Grid item xs={12}>
               <FormInput<RegistrationFormFields>
-                id="lastName"
-                type="text"
                 name="lastName"
                 label="Last Name"
-                placeholder="Last Name"
                 size="md"
                 register={register}
                 rules={{ required: 'You must enter your last name.' }}

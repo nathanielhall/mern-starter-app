@@ -2,8 +2,7 @@ import React, {
   ChangeEvent,
   FC,
   FocusEvent,
-  DetailedHTMLProps,
-  InputHTMLAttributes
+  forwardRef
 } from 'react'
 import TextField from '@mui/material/TextField'
 
@@ -20,38 +19,45 @@ export type TextboxProps = {
   errorText?: string
   testId?: string
   required?: boolean
-} & Omit<
-  DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
-  'size'
->
+} 
 
-export const Textbox: FC<TextboxProps> = ({
-  autoFocus,
-  name,
-  label,
-  maxLength,
-  onBlur,
-  onChange,
-  value,
-  error,
-  errorText,
-  testId,
-  required
-}) => (
-  <TextField
-    type="text"
-    autoFocus={autoFocus}
-    error={error}
-    fullWidth
-    helperText={error ? errorText : null}
-    inputProps={{
-      maxLength
-    }}
-    label={required ? `${label}*` : label}
-    name={name}
-    data-test-id={testId}
-    onChange={onChange}
-    onBlur={onBlur}
-    value={value}
-  />
+export const Textbox: FC<TextboxProps> = forwardRef<HTMLInputElement, TextboxProps>(
+  (
+    {
+      autoFocus,
+      name,
+      label,
+      maxLength,
+      onBlur,
+      onChange,
+      value,
+      error,
+      errorText,
+      testId,
+      required
+    },
+    ref
+  ) => {
+    return (
+      <TextField
+        ref={ref}
+        type="text"
+        autoFocus={autoFocus}
+        error={error}
+        fullWidth
+        helperText={error ? errorText : null}
+        inputProps={{
+          maxLength
+        }}
+        label={required ? `${label}*` : label}
+        name={name}
+        data-test-id={testId}
+        onChange={onChange}
+        onBlur={onBlur}
+        value={value}
+      />
+    )
+  }
 )
+Textbox.displayName = "Textbox"
+
