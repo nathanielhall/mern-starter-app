@@ -19,6 +19,7 @@ export type TextboxProps = {
   errorText?: string
   testId?: string
   required?: boolean
+  type?: string
 } 
 
 export const Textbox: FC<TextboxProps> = forwardRef<HTMLInputElement, TextboxProps>(
@@ -34,14 +35,15 @@ export const Textbox: FC<TextboxProps> = forwardRef<HTMLInputElement, TextboxPro
       error,
       errorText,
       testId,
-      required
+      required,
+      type = "text"
     },
     ref
   ) => {
     return (
       <TextField
         ref={ref}
-        type="text"
+        type={type}
         autoFocus={autoFocus}
         error={error}
         fullWidth

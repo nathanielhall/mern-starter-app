@@ -16,8 +16,8 @@ export class UserController {
   @Get('me')
   getMe(@Req() req: Request) {
     console.log({ user: req.user });
-    // return user;
-    return req;
+    return req.user;
+    // return req;
   }
 
   @Patch()

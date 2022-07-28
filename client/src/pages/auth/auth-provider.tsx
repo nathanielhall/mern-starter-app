@@ -1,11 +1,10 @@
-import React, {
-  FC,
-  createContext,
-  useEffect,
-  useState,
-  useContext
-} from 'react'
-import axios from 'axios'
+import React, { FC, useState } from 'react'
+import {
+  QueryClient,
+  QueryClientProvider,
+  useMutation,
+} from 'react-query'
+import { service } from './api.service'
 
 export type Auth = {
   id: number
@@ -14,31 +13,42 @@ export type Auth = {
   token: string
 }
 
-const AuthContext = createContext<Auth | undefined>(undefined)
-
-export const AuthProvider: FC = ({ children }) => {
-  const [auth, setAuth] = useState<Auth | undefined>(undefined)
-
-  useEffect(() => {
-    const fetchAuth = async () => {
-      const response = await axios.get<Auth>('/users/me', {
-        baseURL: 'http://localhost:5000'
-      })
-      setAuth(response.data)
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false
     }
-    fetchAuth()
-  }, [])
-
-  if (!auth) return null
-
-  return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>
+  }
+})
+export const AuthProvider: FC = ({ children }) => {
+  return (
+    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+  )
 }
 
-export const useAuth: () => Auth = () => {
-  const context = useContext(AuthContext)
-  if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider')
-  }
+export const useAuth = () => {
+  const [currentUser, setCurrentUser] = useState<Auth | null>(null)
 
-  return context
+  React.useEffect(() => {
+    const getCurrentUser = () =>
+      service.getAuthToken().then((res) => setCurrentUser(res))
+
+    getCurrentUser()
+  }, [])
+
+  const onSignUp = useMutation(service.signUp, {
+    // onSuccess: () => queryClient.invalidateQueries()
+  })
+
+  const onSignIn = useMutation(service.signIn, {
+    // onSuccess: () => queryClient.invalidateQueries()
+  })
+
+  // const onLogout =
+
+  return {
+    currentUser,
+    onSignIn,
+    onSignUp
+  }
 }

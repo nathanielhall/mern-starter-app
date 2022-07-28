@@ -1,12 +1,21 @@
-import React from 'react'
-// import {Me} from './pages/users'
-import {SignUp} from './pages/auth'
+import { Spinner } from 'core/spinner'
+import React, { FC } from 'react'
+import { Page } from './core'
+import { SignIn, useAuth } from './pages/auth'
 
-export const Application = () => {
-  return <SignUp />
+export const Application: FC = () => {
+  const { currentUser } = useAuth()
+
+  return (
+    <React.Suspense fallback={<Spinner />}>
+      {currentUser ? <AuthenticatedApp /> : <UnauthenticatedApp />}
+    </React.Suspense>
+  )
 }
-// export const Application = () => {
-//   const user = useAuth()
-//   console.log('useAuth', user)
-//   return user ? <Me user={user} /> : <SignIn />
-// }
+
+const AuthenticatedApp: FC = () => {
+  return <Page>{`Authenticated App`}</Page>
+}
+const UnauthenticatedApp: FC = () => {
+  return <SignIn />
+}
