@@ -1,5 +1,5 @@
 import React from 'react'
-import {useAuth} from './auth-provider'
+import { useAuth } from './auth-provider'
 import { Grid, Page, Section, FormInput, Button } from 'src/core'
 import { useForm } from 'react-hook-form'
 
@@ -13,7 +13,7 @@ export const SignIn = () => {
   return (
     <Page>
       <Section>
-          <SignInForm />
+        <SignInForm />
       </Section>
     </Page>
   )
@@ -26,7 +26,7 @@ export const SignInForm = () => {
     formState: { errors }
   } = useForm<SignInFormFields>()
 
-  const {onSignIn} = useAuth()
+  const { onSignIn } = useAuth()
 
   const onSubmit = handleSubmit((data) => {
     console.log('submitting...', data)
@@ -58,10 +58,16 @@ export const SignInForm = () => {
           />
         </Grid>
 
-        <Grid item xs={12} sx={{ textAlign: 'right' }}>
-          <Button variant="contained" type="submit">
-            Login
+        <Grid item xs={12}>
+          <Button variant="contained" fullWidth type="submit">
+            Log In
           </Button>
+        </Grid>
+        <Grid item xs={12}>
+          <hr />
+        </Grid>
+        <Grid item xs={12} sx={{ textAlign: 'center' }}>
+          <Button variant="outlined">Register</Button>
         </Grid>
       </Grid>
     </form>
