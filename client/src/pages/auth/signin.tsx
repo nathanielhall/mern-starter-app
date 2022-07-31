@@ -12,7 +12,7 @@ export const SignIn = () => {
   // FIXME: add alignItems / justifyContent to center the section horizontally & vertically
   return (
     <Page>
-      <Section>
+      <Section sx={{marginTop: '25px'}}>
         <SignInForm />
       </Section>
     </Page>
