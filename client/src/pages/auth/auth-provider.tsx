@@ -20,7 +20,7 @@ const queryClient = new QueryClient({
     }
   }
 })
-export const AuthProvider: FC = ({ children }) => {
+export const AuthProvider: FC<{children: React.ReactElement}> = ({ children }) => {
   return (
     <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
   )

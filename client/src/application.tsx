@@ -14,7 +14,7 @@ export const Application: FC = () => {
 }
 
 const AuthenticatedApp: FC = () => {
-  return <Page>{`Authenticated App`}</Page>
+  return <Page><>{`Authenticated App`}</></Page>
 }
 const UnauthenticatedApp: FC = () => {
   return <SignIn />
