@@ -1,21 +1,69 @@
 import { Spinner } from 'core/spinner'
 import React, { FC } from 'react'
 import { Page } from './core'
-import { SignIn, useAuth } from './pages/auth'
+import { SignIn, SignUp, RequireAuth, useAuth } from './pages/auth'
+import { Routes, Route, Outlet, Link } from 'react-router-dom'
 
-export const Application: FC = () => {
+export const Start = () => {
   const { currentUser } = useAuth()
 
   return (
     <React.Suspense fallback={<Spinner />}>
-      {currentUser ? <AuthenticatedApp /> : <UnauthenticatedApp />}
+      {currentUser ? <AuthenticatedApp /> : <SignIn />}
     </React.Suspense>
   )
 }
 
-const AuthenticatedApp: FC = () => {
-  return <Page><>{`Authenticated App`}</></Page>
+export const Application: FC = () => {
+  return (
+    <Routes>
+      <Route element={<Layout />}>
+        <Route path="/" element={<Start />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signout" element={<SignOut />} />
+        <Route
+          path="/home"
+          element={
+            <RequireAuth>
+              <AuthenticatedApp />
+            </RequireAuth>
+          }
+        />
+      </Route>
+    </Routes>
+  )
 }
-const UnauthenticatedApp: FC = () => {
-  return <SignIn />
+
+export const Layout = () => {
+  return (
+    <Page>
+      <Outlet />
+    </Page>
+  )
+}
+
+const AuthenticatedApp: FC = () => {
+  return (
+    <Page>
+      <>{`Authenticated App`}</>
+      <Link to="/signout">Logout</Link>
+    </Page>
+  )
+}
+
+
+const SignOut = () => {
+  const {onSignOut} = useAuth()
+
+  React.useEffect(() => {
+    onSignOut()
+  }, [])
+
+  return (
+    <Page>
+      {`Signed out`}
+      <Link to="/">Login</Link>
+    </Page>
+  )
 }

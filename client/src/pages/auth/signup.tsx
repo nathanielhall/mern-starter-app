@@ -1,11 +1,8 @@
 import React from 'react'
 import { Grid, Page, Section, FormInput, Button } from 'src/core'
 import { useForm } from 'react-hook-form'
-// import Grid from '@mui/material/Grid'
-import {
-  QueryClient,
-  QueryClientProvider
-} from 'react-query'
+import { useNavigate } from 'react-router-dom'
+import { QueryClient, QueryClientProvider } from 'react-query'
 import { useAuth } from './auth-provider'
 
 export type RegistrationFormFields = {
@@ -36,11 +33,13 @@ export const SignUpForm = () => {
     formState: { errors }
   } = useForm<RegistrationFormFields>()
 
-  const {onSignUp} = useAuth()
+  const { onSignUp } = useAuth()
+  const navigate = useNavigate()
 
   const onSubmit = handleSubmit((data) => {
     console.log('submitting...', data)
     onSignUp.mutate(data)
+    navigate('/home', { replace: true })
   })
 
   return (

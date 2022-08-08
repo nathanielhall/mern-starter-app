@@ -2,6 +2,7 @@ import React from 'react'
 import { useAuth } from './auth-provider'
 import { Grid, Page, Section, FormInput, Button } from 'src/core'
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 
 export type SignInFormFields = {
   email: string
@@ -9,10 +10,9 @@ export type SignInFormFields = {
 }
 
 export const SignIn = () => {
-  // FIXME: add alignItems / justifyContent to center the section horizontally & vertically
   return (
     <Page>
-      <Section sx={{marginTop: '25px'}}>
+      <Section sx={{ marginTop: '25px' }}>
         <SignInForm />
       </Section>
     </Page>
@@ -27,11 +27,21 @@ export const SignInForm = () => {
   } = useForm<SignInFormFields>()
 
   const { onSignIn } = useAuth()
+  const navigate = useNavigate()
 
   const onSubmit = handleSubmit((data) => {
     console.log('submitting...', data)
-    onSignIn.mutate(data)
+    return onSignIn.mutate(data, {
+      onSuccess: () => {
+        console.log('redirect HOME')
+        navigate('/home', { replace: true })
+      }
+    })
   })
+
+  const onRegister = () => {
+    navigate('/signup')
+  }
 
   return (
     <form onSubmit={onSubmit}>
@@ -67,7 +77,9 @@ export const SignInForm = () => {
           <hr />
         </Grid>
         <Grid item xs={12} sx={{ textAlign: 'center' }}>
-          <Button variant="outlined">Register</Button>
+          <Button variant="outlined" onClick={onRegister}>
+            Register
+          </Button>
         </Grid>
       </Grid>
     </form>
